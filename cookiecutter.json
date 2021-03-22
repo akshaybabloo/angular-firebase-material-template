@@ -1,4 +1,7 @@
 {
   "project_name": "Project-name",
-  "firebase_project_name": "Firebase-project-name"
+  "firebase_project_name": "Firebase-project-name",
+  "_copy_without_render": [
+    "*.html"
+  ]
 }
