@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "{{cookiecutter.firebase_project_name}}": {
+      "hosting": {
+        "{{cookiecutter.project_name}}": [
+          "{{cookiecutter.firebase_project_name}}"
+        ]
+      }
+    }
+  }
+}

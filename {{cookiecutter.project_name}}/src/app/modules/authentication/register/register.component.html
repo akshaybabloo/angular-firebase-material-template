@@ -1,0 +1,79 @@
+<div [style.height]="'75%'" class="d-flex justify-content-center align-items-center mt-5">
+
+  <mat-card>
+
+    <h2 class="mt-4 text-center">Create an account</h2>
+
+    <form (ngSubmit)="register()" [formGroup]="registerForm" [style.text-align]="'center'" class="m-4">
+
+      <p>
+        <mat-form-field [style.width.%]="100" appearance="fill">
+          <mat-label>full name</mat-label>
+          <input autocomplete="name" formControlName="fullName" matInput type="text">
+          <mat-error *ngIf="f?.fullName?.errors?.required">Name is required</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field [style.width.%]="100" appearance="fill">
+          <mat-label>email</mat-label>
+          <input autocomplete="username" formControlName="email" matInput type="email">
+          <mat-hint>this will be your login ID</mat-hint>
+          <mat-error *ngIf="f?.email?.errors?.required">Email is required</mat-error>
+          <mat-error *ngIf="f?.email?.errors?.email">Enter a valid email address</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="fill" class="mr-2">
+          <mat-label>password</mat-label>
+          <input autocomplete="current-password" formControlName="password" matInput type="password">
+          <mat-error *ngIf="f?.password?.errors?.required">Password is required</mat-error>
+          <mat-error *ngIf="f?.password?.errors?.minlength">Required
+            length {{f?.password?.errors?.minlength?.requiredLength}}
+            but {{f?.password?.errors?.minlength?.actualLength}} provided
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>confirm password</mat-label>
+          <input autocomplete="current-password" formControlName="confirmPassword" matInput type="password">
+          <mat-error *ngIf="f?.confirmPassword?.errors?.required">Password is required</mat-error>
+          <mat-error *ngIf="f?.confirmPassword?.errors?.checkPasswords">Confirm password is required</mat-error>
+          <mat-error *ngIf="f?.confirmPassword?.errors?.minlength">Required
+            length {{f?.confirmPassword?.errors?.minlength?.requiredLength}}
+            but {{f?.confirmPassword?.errors?.minlength?.actualLength}} provided
+          </mat-error>
+        </mat-form-field>
+        <mat-error *ngIf="registerForm.errors?.notSame && (registerForm.touched || registerForm.dirty)">Password and
+          confirm password are not similar
+        </mat-error>
+      </p>
+
+      <mat-card-actions>
+
+        <div class="button-container">
+          <div *ngIf="submitted" class="spinner-container">
+            <mat-spinner diameter="24"></mat-spinner>
+          </div>
+          <button [disabled]="submitted || !registerForm.valid"
+                  color="primary"
+                  mat-raised-button>Register
+          </button>
+        </div>
+        <a mat-button routerLink="/forgot-password">Forgot Password?</a>
+        <br><br>
+        <a mat-button routerLink="/login">Login Instead?</a>
+      </mat-card-actions>
+    </form>
+
+    <p class="text-muted">
+      This site is protected by reCAPTCHA and the Google
+      <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+    </p>
+
+    <div data-sitekey="6Le82fIZAAAAALhhkG0lhmGwHauRnwkEeqGPt8O_" id="recaptcha-container"></div>
+  </mat-card>
+
+</div>

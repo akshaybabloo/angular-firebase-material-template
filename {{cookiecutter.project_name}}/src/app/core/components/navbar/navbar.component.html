@@ -1,0 +1,85 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [ngClass]="{'sidenav-hidden': (isHandset$ | async)===false}"
+               [opened]="(isHandset$ | async) === false"
+               class="sidenav"
+               fixedInViewport>
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a (click)="drawer.toggle()" mat-list-item routerLink="/">Home</a>
+      <!--      <a (click)="drawer.toggle()" mat-list-item routerLink="/organisation">Organisation</a>-->
+      <a (click)="drawer.toggle()" *ngIf="isAdmin" mat-list-item routerLink="/admin">Admin</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="mb-5">
+    <mat-progress-bar *ngIf="routeEvent.loading$ | async" class="nav-progress" mode="query"></mat-progress-bar>
+    <mat-toolbar
+      [ngStyle]="{'backgroundColor': (adminBackground$ | async), 'display': (hideNav$ | async) ? 'none' : ''}"
+      class="mat-elevation-z10">
+      <button
+        (click)="drawer.toggle()"
+        *ngIf="(isHandset$ | async) && isLoggedIn"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        type="button">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <a mat-button routerLink="/">
+        <img alt="logo"
+             class="logo img-fluid"
+             src="assets/image/logo.svg">
+      </a>
+      <div *ngIf="(isHandset$ | async)===false && isLoggedIn">
+        <a class="mr-3" mat-button routerLink="/">Home</a>
+        <a *ngIf="isAdmin" color="warn" mat-button mat-raised-button routerLink="/admin">Admin</a>
+      </div>
+      <span class="menu-spacer"></span>
+      <button
+        (click)="login()"
+        *ngIf="!auth.loggedIn"
+        aria-label="Login"
+        class="mr-2"
+        mat-flat-button
+        type="button">
+        Login
+      </button>
+      <button
+        (click)="login()"
+        *ngIf="!auth.loggedIn"
+        aria-label="Register"
+        color="primary"
+        mat-flat-button
+        type="button">
+        Register
+      </button>
+      <!--      <button-->
+      <!--        (click)="logout()"-->
+      <!--        *ngIf="auth.loggedIn"-->
+      <!--        aria-label="Logout"-->
+      <!--        mat-icon-button-->
+      <!--        type="button">-->
+      <!--        <mat-icon aria-label="Logout icon">exit_to_app</mat-icon>-->
+      <!--      </button>-->
+
+      <div *ngIf="auth.loggedIn">
+        <button [matMenuTriggerFor]="userMenu" aria-label="Example icon-button with a menu" mat-icon-button>
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button (click)="logout()" mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

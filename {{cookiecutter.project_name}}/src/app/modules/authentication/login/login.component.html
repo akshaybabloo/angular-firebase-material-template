@@ -1,0 +1,79 @@
+<div [style.height]="'75%'" class="d-flex justify-content-center align-items-center mt-5">
+
+  <mat-card>
+
+    <ng-container *ngIf="!verify">
+      <h2 class="mt-4 text-center">Login to access your account</h2>
+      <form (ngSubmit)="login()" [formGroup]="loginForm" [style.text-align]="'center'" class="m-4">
+
+        <mat-form-field appearance="fill">
+          <mat-label>email</mat-label>
+          <input autocomplete="username" formControlName="email" matInput type="email">
+          <mat-error *ngIf="f?.email?.errors?.required">Email is required</mat-error>
+          <mat-error *ngIf="f?.email?.errors?.email">Enter a valid email address</mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill">
+          <mat-label>password</mat-label>
+          <input autocomplete="current-password" formControlName="password" matInput type="password">
+          <mat-error *ngIf="f?.password?.errors?.required">Password is required</mat-error>
+        </mat-form-field>
+
+        <mat-card-actions>
+
+          <div class="button-container">
+            <div *ngIf="submitted" class="spinner-container">
+              <mat-spinner diameter="24"></mat-spinner>
+            </div>
+            <button [disabled]="submitted"
+                    color="primary"
+                    mat-raised-button>Login
+            </button>
+          </div>
+          <button (click)="forgotPassword()" mat-button>Forgot Password?</button>
+          <br><br>
+          <a color="accent" mat-raised-button routerLink="/register">Create account</a>
+        </mat-card-actions>
+      </form>
+
+    </ng-container>
+
+    <ng-container *ngIf="verify">
+      <h2 class="mt-4 text-center">Enter verification code</h2>
+
+      <form (ngSubmit)="verifyLogin()" [formGroup]="verifyForm" [style.text-align]="'center'" class="m-4">
+
+        <mat-form-field appearance="fill">
+          <mat-label>verification code</mat-label>
+          <input formControlName="code" matInput type="text">
+          <mat-error *ngIf="v?.code?.errors?.required">Verification code is required</mat-error>
+        </mat-form-field>
+
+        <mat-card-actions>
+
+          <div class="button-container">
+            <div *ngIf="submittedVerify" class="spinner-container">
+              <mat-spinner diameter="24"></mat-spinner>
+            </div>
+            <button [disabled]="submittedVerify"
+                    color="primary"
+                    mat-raised-button>Verify
+            </button>
+          </div>
+        </mat-card-actions>
+      </form>
+
+    </ng-container>
+
+    <p class="text-muted">
+      This site is protected by reCAPTCHA and the Google
+      <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+    </p>
+
+    <div data-sitekey="6Le82fIZAAAAALhhkG0lhmGwHauRnwkEeqGPt8O_" id="recaptcha-container"></div>
+  </mat-card>
+
+</div>

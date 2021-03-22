@@ -1,0 +1,80 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+$accent: mat-palette($mat-pink, 200, A100, A400);
+
+a {
+  color: mat-color($accent);
+  text-decoration: none;
+}
+
+button,
+a {
+  &.mat-button,
+  &.mat-raised-button,
+  &.mat-flat-button,
+  &.mat-stroked-button {
+    .mat-icon {
+      vertical-align: top;
+      font-size: 1.25em;
+    }
+  }
+}
+
+//$grey-accent: mat-palette($mat-gray, 900, A100, A400);
+
+.mat-toolbar {
+  background: #303030;
+}
+
+.mat-form-field-infix {
+  width: 200px !important;
+}
+
+.spinner-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-container-background {
+  @extend #{'.spinner-container'};
+  background: rgba(141, 131, 131, 0.66);
+}
+
+.button-container {
+  display: inline-block;
+  position: relative;
+}
+
+.menu-spacer {
+  flex: auto 1 1;
+}
+
+.text-muted {
+  color: #6c757d !important;
+  font-size: 10px;
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+.text-center {
+  text-align: center;
+}
