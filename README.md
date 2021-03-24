@@ -21,6 +21,7 @@ This is a [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template,
 
 - [Requirements](#requirements)
 - [Usage](#usage)
+- [Adding Firebase Configuration](#adding-firebase-configuration)
 
 ## Requirements
 
@@ -45,3 +46,10 @@ firebase_project_name [Firebase-project-name]: gollahalli-rex
 > make sure you have `-` (hyphen) instead of space for project names, example `hello world` -> `hollow-world`.
 
 Now `cd rex-ui` and do `yarn install`.
+
+## Adding Firebase Configuration
+
+Copy the firebase configuration settings and paste them in:
+
+1. `<project-name>/src/environments/environment.prod.ts` - this will be your production configuration, lookout for `TODO` comment
+2. `<project-name>/src/environments/environment.ts` - this will be your development configuration, lookout for `TODO` comment
