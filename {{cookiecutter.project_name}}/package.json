@@ -1,5 +1,5 @@
 {
-  "name": "{{cookiecutter.project_name}}",
+  "name": "h",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
