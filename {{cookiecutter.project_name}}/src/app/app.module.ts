@@ -20,6 +20,8 @@ import {FormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
+import {AngularFirestoreModule, USE_EMULATOR as FIRESTORE_EMULATOR} from '@angular/fire/firestore';
+import {AngularFireAuthModule, USE_EMULATOR as AUTH_EMULATOR} from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -42,11 +44,22 @@ import {MatMenuModule} from '@angular/material/menu';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatMenuModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule,
 
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: FIRESTORE_EMULATOR,
+      useValue: environment.production ? undefined : ['localhost', 8080]
+    },
+    {
+      provide: AUTH_EMULATOR,
+      useValue: environment.production ? undefined : ['localhost', 9099]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
