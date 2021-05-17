@@ -7757,10 +7757,10 @@ open@^6.3.0:
   dependencies:
     is-wsl "^1.1.0"
 
-open@^8.0.4:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/open/-/open-8.0.4.tgz#2fb90debffcf20f4d7be537502ed3e3ee9e5dcbc"
-  integrity sha512-Txc9FOcvjrr5Kv+Zb3w89uKMKiP7wH8mLdYj1xJa+YnhhntEYhbB6cQHjS4O6P+jFwMEzEQVVcpfnu9WkKNuLQ==
+open@^8.0.9:
+  version "8.0.9"
+  resolved "https://registry.yarnpkg.com/open/-/open-8.0.9.tgz#a7a739fed91dfa3734094255badbeabd71116a12"
+  integrity sha512-vbCrqMav3K8mCCy8NdK4teUky0tpDrBbuiDLduCdVhc5oA9toJMip9rBkuwdwSI9E7NOkz4VkLWPi8DD2MP1gQ==
   dependencies:
     define-lazy-prop "^2.0.0"
     is-docker "^2.1.1"
